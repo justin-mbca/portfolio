@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Bioinformatics Pipeline | Portfolio</title>
+    <meta name="description" content="Enterprise-grade RNA-Seq analysis pipeline with AWS Glue, EMR, Lambda, and healthcare data standards">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-theme="light">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-code"></i> Portfolio
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../resume.html">Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <button id="theme-toggle" class="btn btn-link nav-link" aria-label="Toggle theme">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Header -->
+    <header class="project-detail-header">
+        <div class="container">
+            <h1 class="project-detail-title">AWS Bioinformatics Cloud Pipeline</h1>
+            <p class="project-detail-tagline">Enterprise-Grade Genomics Data Platform</p>
+            
+            <div class="tech-badges" style="justify-content: center; margin: 1.5rem 0;">
+                <span class="tech-badge">AWS Glue</span>
+                <span class="tech-badge">EMR</span>
+                <span class="tech-badge">Lambda</span>
+                <span class="tech-badge">S3</span>
+                <span class="tech-badge">ECS</span>
+                <span class="tech-badge">Terraform</span>
+                <span class="tech-badge">FHIR</span>
+                <span class="tech-badge">HL7</span>
+                <span class="tech-badge">OMOP</span>
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">R</span>
+            </div>
+            
+            <div class="project-detail-links">
+                <a href="https://github.com/justin-mbca/bioinformatics_pipeline" class="btn btn-light btn-lg" target="_blank">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+                <a href="https://github.com/justin-mbca/bioinformatics_pipeline/blob/main/README.md" class="btn btn-outline-light btn-lg" target="_blank">
+                    <i class="fas fa-book"></i> Documentation
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overview Section -->
+    <section class="project-section">
+        <div class="container">
+            <h2><i class="fas fa-info-circle"></i> Overview</h2>
+            <p>Built a production-ready bioinformatics pipeline for RNA-Seq analysis on AWS, processing 100GB+ genomic datasets with automated ETL, serverless compute, and complete healthcare data standards integration. Achieved 85%+ test coverage with comprehensive CI/CD pipelines.</p>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <h3>Challenge</h3>
+                    <p>Traditional bioinformatics pipelines lack cloud scalability, healthcare compliance, and modern data engineering practices. Research teams struggle with:</p>
+                    <ul>
+                        <li>Manual data processing workflows</li>
+                        <li>Limited compute resources</li>
+                        <li>No healthcare data standards integration</li>
+                        <li>Lack of automated testing and CI/CD</li>
+                        <li>High infrastructure costs</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h3>Solution</h3>
+                    <p>Migrated analysis workflows to AWS using:</p>
+                    <ul>
+                        <li><strong>AWS Glue</strong> for scalable ETL operations</li>
+                        <li><strong>EMR</strong> for Spark-based analytics</li>
+                        <li><strong>Lambda</strong> for event-driven automation</li>
+                        <li><strong>ECS</strong> for containerized workloads</li>
+                        <li><strong>FHIR, HL7, OMOP</strong> for healthcare interoperability</li>
+                        <li><strong>Terraform</strong> for infrastructure as code</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section class="project-section" style="background-color: var(--bg-secondary);">
+        <div class="container">
+            <h2><i class="fas fa-project-diagram"></i> Architecture</h2>
+            <p>The pipeline follows a modern data lake architecture with automated ETL, serverless processing, and healthcare standards integration.</p>
+            
+            <div class="architecture-diagram">
+                <pre>
+┌─────────────────────────────────────────────────────────────────────┐
+│                         AWS Cloud Architecture                       │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                       │
+│  [Raw Data Sources]                                                  │
+│         │                                                            │
+│         v                                                            │
+│  ┌──────────────┐                                                   │
+│  │   S3 Bucket  │  (Data Lake)                                      │
+│  │  Raw/        │                                                   │
+│  └──────┬───────┘                                                   │
+│         │ (S3 Event)                                                │
+│         v                                                            │
+│  ┌──────────────┐                                                   │
+│  │ AWS Lambda   │  (Trigger ETL)                                    │
+│  └──────┬───────┘                                                   │
+│         │                                                            │
+│         v                                                            │
+│  ┌──────────────────┐                                               │
+│  │   AWS Glue ETL   │  (Transform & Validate)                       │
+│  │   - Filter       │                                               │
+│  │   - Normalize    │                                               │
+│  │   - Quality Check│                                               │
+│  └──────┬───────────┘                                               │
+│         │                                                            │
+│         v                                                            │
+│  ┌──────────────┐                                                   │
+│  │   S3 Bucket  │  (Processed Data)                                │
+│  │  Processed/  │                                                   │
+│  └──────┬───────┘                                                   │
+│         │                                                            │
+│         v                                                            │
+│  ┌──────────────────┐                                               │
+│  │   AWS EMR        │  (Spark Analysis)                             │
+│  │   - DESeq2-style │                                               │
+│  │   - Clustering   │                                               │
+│  │   - Pathways     │                                               │
+│  └──────┬───────────┘                                               │
+│         │                                                            │
+│         v                                                            │
+│  ┌──────────────┐                                                   │
+│  │   S3 Bucket  │  (Results)                                        │
+│  │  Results/    │                                                   │
+│  └──────┬───────┘                                                   │
+│         │                                                            │
+│         v                                                            │
+│  ┌─────────────────────┐                                            │
+│  │ Healthcare Standards│                                            │
+│  │  - FHIR Genomics    │                                            │
+│  │  - HL7 Lab Results  │                                            │
+│  │  - OMOP CDM Mapping │                                            │
+│  └─────────────────────┘                                            │
+│                                                                       │
+│  ┌──────────────────┐                                               │
+│  │   AWS ECS/Fargate│  (Containerized Tools)                        │
+│  │   - STAR, HTSeq  │                                               │
+│  │   - Salmon, etc. │                                               │
+│  └──────────────────┘                                               │
+│                                                                       │
+│  [Infrastructure as Code: Terraform]                                │
+│  [CI/CD: GitHub Actions + pytest]                                   │
+└─────────────────────────────────────────────────────────────────────┘
+                </pre>
+            </div>
+            
+            <h3 class="mt-4">Data Flow</h3>
+            <ol>
+                <li><strong>Ingestion:</strong> Raw RNA-Seq data uploaded to S3 Data Lake (raw/ prefix)</li>
+                <li><strong>Trigger:</strong> S3 event triggers Lambda function to initiate processing</li>
+                <li><strong>ETL:</strong> AWS Glue job processes data (filtering, normalization, quality control)</li>
+                <li><strong>Storage:</strong> Processed data saved to S3 (processed/ prefix) in Parquet format</li>
+                <li><strong>Analysis:</strong> EMR cluster performs Spark-based differential expression analysis</li>
+                <li><strong>Results:</strong> Results stored in S3 (results/ prefix) and cataloged in Glue Data Catalog</li>
+                <li><strong>Integration:</strong> Healthcare standards mapping (FHIR, HL7, OMOP) for clinical systems</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="project-section">
+        <div class="container">
+            <h2><i class="fas fa-star"></i> Key Features</h2>
+            
+            <ul class="feature-list">
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <strong>Serverless ETL with AWS Glue</strong><br>
+                        Python/Spark-based ETL jobs for RNA-Seq count data processing, filtering, and normalization
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <strong>Large-scale Analysis on EMR</strong><br>
+                        Spark-based differential expression analysis with DESeq2-style algorithms
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <strong>Event-driven Automation via Lambda</strong><br>
+                        Automatic pipeline triggering on S3 uploads with data quality checks
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <strong>Containerized Workflows on ECS/Fargate</strong><br>
+                        Docker containers for bioinformatics tools (HTSeq, STAR, Salmon)
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <strong>Healthcare Standards Integration</strong><br>
+                        FHIR R4 genomic observations, HL7 lab result integration, OMOP CDM mapping
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <strong>Complete Infrastructure as Code</strong><br>
+                        Terraform modules for all AWS resources with version control
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <strong>Automated Testing (85%+ Coverage)</strong><br>
+                        Comprehensive pytest suite with moto for AWS service mocking
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <strong>CI/CD with GitHub Actions</strong><br>
+                        Automated testing, linting, and deployment pipelines
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <strong>HIPAA-compliant Data Handling</strong><br>
+                        Encryption at rest and in transit, access controls, audit logging
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Technologies Deep Dive -->
+    <section class="project-section" style="background-color: var(--bg-secondary);">
+        <div class="container">
+            <h2><i class="fas fa-tools"></i> Technologies Deep Dive</h2>
+            
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3 class="card-title"><i class="fas fa-database"></i> AWS Glue</h3>
+                            <p>Custom ETL jobs for RNA-Seq count data processing:</p>
+                            <ul>
+                                <li>Filtering low-count genes</li>
+                                <li>Normalization and transformation</li>
+                                <li>Quality control checks</li>
+                                <li>Metadata enrichment</li>
+                                <li>Parquet optimization for analytics</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3 class="card-title"><i class="fas fa-chart-bar"></i> AWS EMR</h3>
+                            <p>Spark-based differential expression analysis:</p>
+                            <ul>
+                                <li>DESeq2-style statistical methods</li>
+                                <li>Gene clustering and pathway analysis</li>
+                                <li>Scalable to TB-sized datasets</li>
+                                <li>Auto-scaling clusters</li>
+                                <li>Spot instance optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3 class="card-title"><i class="fas fa-bolt"></i> AWS Lambda</h3>
+                            <p>Event-driven pipeline automation:</p>
+                            <ul>
+                                <li>S3 event triggers for new data</li>
+                                <li>Data quality validation</li>
+                                <li>Pipeline orchestration</li>
+                                <li>Error handling and retries</li>
+                                <li>SNS notifications</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3 class="card-title"><i class="fas fa-box"></i> AWS S3</h3>
+                            <p>Multi-tier data lake architecture:</p>
+                            <ul>
+                                <li>Raw data ingestion (100GB+)</li>
+                                <li>Processed data storage (Parquet)</li>
+                                <li>Results archiving</li>
+                                <li>Lifecycle policies (60% cost savings)</li>
+                                <li>Versioning and encryption</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3 class="card-title"><i class="fab fa-docker"></i> AWS ECS</h3>
+                            <p>Containerized bioinformatics tools:</p>
+                            <ul>
+                                <li>HTSeq for read counting</li>
+                                <li>STAR for read alignment</li>
+                                <li>Salmon for quantification</li>
+                                <li>Custom R/Bioconductor images</li>
+                                <li>Fargate for serverless containers</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3 class="card-title"><i class="fas fa-code-branch"></i> Terraform</h3>
+                            <p>Complete infrastructure provisioning:</p>
+                            <ul>
+                                <li>Modular resource definitions</li>
+                                <li>Environment management (dev/prod)</li>
+                                <li>State management with S3 backend</li>
+                                <li>Automated deployment workflows</li>
+                                <li>Cost estimation and tracking</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-12 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3 class="card-title"><i class="fas fa-hospital"></i> Healthcare Standards</h3>
+                            <p>Integration with clinical systems and electronic health records:</p>
+                            <ul>
+                                <li><strong>FHIR R4:</strong> Genomic observations, molecular sequences, diagnostic reports</li>
+                                <li><strong>HL7 v2:</strong> Lab result messages (ORU^R01) for genomic test results</li>
+                                <li><strong>OMOP CDM:</strong> Mapping genomic data to common data model for research</li>
+                                <li><strong>HIPAA Compliance:</strong> Encryption, access controls, audit logging</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metrics & Results -->
+    <section class="project-section">
+        <div class="container">
+            <h2><i class="fas fa-chart-line"></i> Metrics &amp; Results</h2>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">100GB+</div>
+                    <div class="metric-label">RNA-Seq Datasets Processed</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">85%+</div>
+                    <div class="metric-label">Test Coverage</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">60%</div>
+                    <div class="metric-label">Cost Reduction</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">10x</div>
+                    <div class="metric-label">Faster Processing</div>
+                </div>
+            </div>
+            
+            <h3 class="mt-5">Performance Highlights</h3>
+            <ul>
+                <li><strong>Scalability:</strong> Auto-scaling EMR clusters handle datasets from 10GB to 1TB+</li>
+                <li><strong>Speed:</strong> Complete RNA-Seq analysis in hours vs. days on local hardware</li>
+                <li><strong>Cost Optimization:</strong> S3 lifecycle policies and spot instances reduce costs by 60%</li>
+                <li><strong>Reliability:</strong> Automated retries, error handling, and monitoring ensure 99.9% uptime</li>
+                <li><strong>Quality:</strong> Comprehensive testing with 85%+ coverage prevents production issues</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Code Samples -->
+    <section class="project-section" style="background-color: var(--bg-secondary);">
+        <div class="container">
+            <h2><i class="fas fa-code"></i> Code Samples</h2>
+            
+            <h3>AWS Glue ETL Job (Python/Spark)</h3>
+            <div class="code-block">
+                <pre><code>import sys
+from awsglue.transforms import *
+from awsglue.utils import getResolvedOptions
+from pyspark.context import SparkContext
+from awsglue.context import GlueContext
+from awsglue.job import Job
+
+# Initialize Glue context
+args = getResolvedOptions(sys.argv, ['JOB_NAME'])
+sc = SparkContext()
+glueContext = GlueContext(sc)
+spark = glueContext.spark_session
+job = Job(glueContext)
+job.init(args['JOB_NAME'], args)
+
+# Read from Glue Data Catalog
+datasource = glueContext.create_dynamic_frame.from_catalog(
+    database="rnaseq_db",
+    table_name="raw_counts"
+)
+
+# Filter low-count genes (data quality)
+filtered = datasource.filter(
+    f=lambda x: x["count"] > 10 and x["sample_id"] is not None
+)
+
+# Normalize counts (library size normalization)
+normalized = filtered.map(
+    f=lambda x: {
+        **x,
+        "normalized_count": x["count"] / x["library_size"] * 1000000
+    }
+)
+
+# Write to S3 in Parquet format
+glueContext.write_dynamic_frame.from_options(
+    frame=normalized,
+    connection_type="s3",
+    connection_options={"path": "s3://pipeline-bucket/processed/"},
+    format="parquet",
+    format_options={"compression": "snappy"}
+)
+
+job.commit()
+</code></pre>
+            </div>
+            
+            <h3 class="mt-5">Terraform Infrastructure (HCL)</h3>
+            <div class="code-block">
+                <pre><code># AWS Glue ETL Job
+resource "aws_glue_job" "rnaseq_etl" {
+  name     = "rnaseq-etl-pipeline"
+  role_arn = aws_iam_role.glue_role.arn
+  
+  command {
+    name            = "glueetl"
+    script_location = "s3://${var.scripts_bucket}/etl.py"
+    python_version  = "3"
+  }
+  
+  default_arguments = {
+    "--job-language"        = "python"
+    "--enable-metrics"      = "true"
+    "--enable-spark-ui"     = "true"
+    "--TempDir"             = "s3://${var.temp_bucket}/temp/"
+    "--enable-glue-datacatalog" = "true"
+  }
+  
+  max_retries = 1
+  timeout     = 60
+  
+  glue_version       = "3.0"
+  number_of_workers  = 10
+  worker_type        = "G.1X"
+}
+
+# S3 Bucket for Data Lake
+resource "aws_s3_bucket" "data_lake" {
+  bucket = "bioinformatics-data-lake"
+  
+  tags = {
+    Environment = "production"
+    Project     = "RNA-Seq Pipeline"
+  }
+}
+
+# S3 Lifecycle Policy
+resource "aws_s3_bucket_lifecycle_configuration" "data_lake_lifecycle" {
+  bucket = aws_s3_bucket.data_lake.id
+
+  rule {
+    id     = "archive-old-data"
+    status = "Enabled"
+
+    transition {
+      days          = 90
+      storage_class = "GLACIER"
+    }
+  }
+}
+
+# EMR Cluster
+resource "aws_emr_cluster" "spark_cluster" {
+  name          = "rnaseq-spark-cluster"
+  release_label = "emr-6.10.0"
+  applications  = ["Spark", "Hadoop"]
+
+  ec2_attributes {
+    subnet_id                         = var.subnet_id
+    emr_managed_master_security_group = var.master_sg_id
+    emr_managed_slave_security_group  = var.slave_sg_id
+    instance_profile                  = aws_iam_instance_profile.emr_profile.arn
+  }
+
+  master_instance_group {
+    instance_type = "m5.xlarge"
+  }
+
+  core_instance_group {
+    instance_type  = "m5.xlarge"
+    instance_count = 2
+  }
+
+  service_role = aws_iam_role.emr_service_role.arn
+}
+</code></pre>
+            </div>
+            
+            <h3 class="mt-5">Testing with pytest and moto</h3>
+            <div class="code-block">
+                <pre><code>import pytest
+import boto3
+from moto import mock_s3, mock_glue
+from etl.glue_job import process_rnaseq_data
+
+@mock_s3
+@mock_glue
+def test_rnaseq_etl_pipeline():
+    # Setup mock AWS services
+    s3 = boto3.client('s3', region_name='us-east-1')
+    glue = boto3.client('glue', region_name='us-east-1')
+    
+    # Create test bucket
+    bucket_name = 'test-rnaseq-bucket'
+    s3.create_bucket(Bucket=bucket_name)
+    
+    # Upload test data
+    test_data = "gene_id,sample_id,count,library_size\nGENE1,SAMPLE1,150,10000000\n"
+    s3.put_object(Bucket=bucket_name, Key='raw/test.csv', Body=test_data)
+    
+    # Run ETL process
+    result = process_rnaseq_data(bucket_name, 'raw/test.csv')
+    
+    # Assertions
+    assert result['status'] == 'success'
+    assert result['records_processed'] == 1
+    assert result['filtered_count'] > 0
+    
+    # Verify output exists
+    response = s3.list_objects_v2(Bucket=bucket_name, Prefix='processed/')
+    assert response['KeyCount'] > 0
+
+def test_low_count_filtering():
+    """Test that genes with low counts are filtered out"""
+    input_data = [
+        {"gene_id": "GENE1", "count": 5, "sample_id": "S1"},
+        {"gene_id": "GENE2", "count": 150, "sample_id": "S1"},
+    ]
+    
+    filtered = filter_low_counts(input_data, threshold=10)
+    
+    assert len(filtered) == 1
+    assert filtered[0]["gene_id"] == "GENE2"
+</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testing Strategy -->
+    <section class="project-section">
+        <div class="container">
+            <h2><i class="fas fa-vial"></i> Testing Strategy</h2>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Unit Tests</h3>
+                    <ul>
+                        <li>ETL logic validation</li>
+                        <li>Data filtering and transformation</li>
+                        <li>Statistical calculations</li>
+                        <li>Error handling</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h3>Integration Tests</h3>
+                    <ul>
+                        <li>AWS service mocking with moto</li>
+                        <li>End-to-end pipeline testing</li>
+                        <li>Docker container validation</li>
+                        <li>Healthcare standards compliance</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3 class="mt-4">CI/CD Pipeline</h3>
+            <ul>
+                <li><strong>Linting:</strong> flake8, black, mypy for code quality</li>
+                <li><strong>Testing:</strong> pytest with coverage reporting (85%+ requirement)</li>
+                <li><strong>Security:</strong> Bandit for security vulnerability scanning</li>
+                <li><strong>Infrastructure:</strong> Terraform plan validation</li>
+                <li><strong>Deployment:</strong> Automated deployment to dev/staging/prod environments</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Links Section -->
+    <section class="project-section" style="background-color: var(--bg-secondary);">
+        <div class="container text-center">
+            <h2><i class="fas fa-link"></i> Project Links</h2>
+            
+            <div class="project-detail-links mt-4">
+                <a href="https://github.com/justin-mbca/bioinformatics_pipeline" class="btn btn-primary btn-lg" target="_blank">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+                <a href="https://github.com/justin-mbca/bioinformatics_pipeline/blob/main/README.md" class="btn btn-outline-primary btn-lg" target="_blank">
+                    <i class="fas fa-book"></i> Read Documentation
+                </a>
+                <a href="https://github.com/justin-mbca/bioinformatics_pipeline/tree/main/aws_cloud_migration" class="btn btn-outline-primary btn-lg" target="_blank">
+                    <i class="fas fa-cloud"></i> AWS Migration Guide
+                </a>
+                <a href="../index.html#projects" class="btn btn-outline-secondary btn-lg">
+                    <i class="fas fa-arrow-left"></i> Back to Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025. Built with ❤️ using HTML, CSS, JavaScript</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
